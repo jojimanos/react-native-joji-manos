@@ -3,6 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { useEffect, useState } from "react";
 import Form from "./components/form";
 import InputElement from "./components/inputText/inputElement";
+import Checkbox from "./components/checkbox/checkbox";
 
 export default function App() {
   const [title, onChangeTitle] = useState("Useless Text");
@@ -60,6 +61,9 @@ export default function App() {
           fontSize="md"
         />
       </Form>
+      <Checkbox />
+      <Checkbox style="outline" />
+      <Checkbox style="ghost" />
       <StatusBar style="auto" />
     </View>
   );
