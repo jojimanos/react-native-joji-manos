@@ -3,9 +3,10 @@ import { Animated, View, StyleSheet, Easing } from "react-native";
 
 type CheckBoxTickProps = {
   checkBoxTick: boolean;
+  color: string;
 };
 
-const CheckBoxTick: React.FC<CheckBoxTickProps> = ({ checkBoxTick }) => {
+const CheckBoxTick: React.FC<CheckBoxTickProps> = ({ checkBoxTick, color }) => {
   const scaleValue = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -25,6 +26,24 @@ const CheckBoxTick: React.FC<CheckBoxTickProps> = ({ checkBoxTick }) => {
     transform: [{ scale: scaleValue }],
   };
 
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    checkBox: {
+      width: "70%",
+      height: "70%",
+    },
+    tick: {
+      width: "100%",
+      height: "100%",
+      backgroundColor: color ? color : "black",
+      borderRadius: 10,
+    },
+  });
+
   return (
     <View style={styles.container}>
       <View style={styles.checkBox}>
@@ -33,23 +52,5 @@ const CheckBoxTick: React.FC<CheckBoxTickProps> = ({ checkBoxTick }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  checkBox: {
-    width: "70%",
-    height: "70%",
-  },
-  tick: {
-    width: "100%",
-    height: "100%",
-    backgroundColor: "red",
-    borderRadius: 10,
-  },
-});
 
 export default CheckBoxTick;

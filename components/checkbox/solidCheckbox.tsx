@@ -1,5 +1,5 @@
 import React from "react";
-import { Pressable, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { SMALL_SIZE, MEDIUM_SIZE, LARGE_SIZE } from "./constants";
 import { determineSize } from "./functions";
 import CheckboxTick from "./checkBoxTick";
@@ -21,7 +21,7 @@ const SolidCheckbox: React.FC<CheckboxProps> = ({
     container: {
       borderWidth: 2,
       borderStyle: "solid",
-      borderColor: color,
+      borderColor: color ? color : "black",
       backgroundColor: background,
       height: determineSize(size, SMALL_SIZE, MEDIUM_SIZE, LARGE_SIZE),
       width: determineSize(size, SMALL_SIZE, MEDIUM_SIZE, LARGE_SIZE),
@@ -41,9 +41,7 @@ const SolidCheckbox: React.FC<CheckboxProps> = ({
   return (
     <View style={styles.container}>
       {checkBoxTick && (
-        // <View style={styles.centerTick}>
-        <CheckboxTick checkBoxTick={checkBoxTick} />
-        // </View>
+        <CheckboxTick color={color} checkBoxTick={checkBoxTick} />
       )}
     </View>
   );

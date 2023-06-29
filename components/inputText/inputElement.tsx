@@ -4,19 +4,23 @@ import OutlineInputElement from "./outlineInputElement";
 import SolidInputElement from "./solidInputElement";
 
 type InputElementProps = {
-  value: string;
-  onChangeValue: React.Dispatch<SetStateAction<string>>;
-  placeholderTextColor: string;
-  outline: boolean;
-  fontSize;
+  value?: string;
+  onChangeValue?: React.Dispatch<SetStateAction<string>>;
+  placeholderTextColor?: string;
+  outlineColor?: string;
+  backgroundColor?: string;
+  fontSize?: string;
+  style?: string;
 };
 
 const InputElement: React.FC<InputElementProps> = ({
   value,
   onChangeValue,
   placeholderTextColor,
-  outline,
+  outlineColor,
+  backgroundColor,
   fontSize,
+  style,
 }) => {
   const placeholderColor = placeholderTextColor;
 
@@ -30,19 +34,21 @@ const InputElement: React.FC<InputElementProps> = ({
 
   return (
     <>
-      {!outline ? (
+      {style === "solid" && (
         <SolidInputElement
           value={value}
           placeholderTextColor={placeholderTextColor}
           onChangeValue={(text) => onChangeValue(text)}
           fontSize={fontSize}
+          backgroundColor={backgroundColor}
         />
-      ) : (
+      )}
+      {style === "outline" && (
         <OutlineInputElement
           value={value}
           placeholderTextColor={placeholderTextColor}
           onChangeValue={(text) => onChangeValue(text)}
-          outlineColor={"red"}
+          outlineColor={outlineColor}
           fontSize={fontSize}
         />
       )}

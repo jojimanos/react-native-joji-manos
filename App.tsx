@@ -10,61 +10,15 @@ export default function App() {
   const [content, onChangeContent] =
     useState<React.SetStateAction<string>>("Useless Text");
 
-  const [notes, setNotes] = useState([]);
-
-  const onSubmit = async () => {
-    const res = await fetch("http://localhost:8000/api/notes", {
-      body: JSON.stringify({
-        title: title,
-        content: content,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-    });
-  };
-
-  // const fetchNote = async () => {
-  // fetch("http://localhost:8000/api/notes", {
-  // method: "GET",
-  // mode: "cors",
-  // })
-  // .then((response) => {
-  // return response.json();
-  // })
-  // .then((data) => {
-  // console.log("The data", data.notes[0]), setNotes(data.notes);
-  // });
-  // };
-
-  useEffect(() => {
-    // fetchNote("http://localhost:8000/api/notes", "notes", setNotes);
-    // console.log(title, content);
-  }, []);
-
   return (
     <View style={styles.container}>
-      <Form onSubmit={onSubmit} bgColor={"azure"} screenSize={"sm"}>
-        <InputElement
-          placeholderTextColor="black"
-          value="title"
-          onChangeValue={onChangeTitle}
-          outline={true}
-          fontSize="lg"
-        />
-        <InputElement
-          placeholderTextColor="red"
-          value="content"
-          onChangeValue={onChangeContent}
-          outline={false}
-          fontSize="md"
-        />
-      </Form>
-      <Checkbox />
-      <Checkbox style="outline" />
-      <Checkbox style="ghost" />
-      <StatusBar style="auto" />
+      <Checkbox
+        size={"sm"} //sm, md or lg, lg is the default
+        style={"string"} //there are solid, outline and ghost variations
+        color={"string"}
+        background={"string"}
+        text={"string"}
+      />
     </View>
   );
 }
@@ -77,5 +31,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     color: "black",
+    flexDirection: "row",
   },
 });

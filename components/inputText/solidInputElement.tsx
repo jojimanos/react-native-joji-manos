@@ -1,4 +1,4 @@
-import React, { SetStateAction } from "react";
+import React, { SetStateAction, useState } from "react";
 import { TextInput, View, StyleSheet } from "react-native";
 import {
   LARGE_FONT_SIZE,
@@ -10,8 +10,9 @@ import { determineFontSize } from "./functions";
 type SolidInputElementProps = {
   value: string;
   onChangeValue: React.Dispatch<SetStateAction<string>>;
-  placeholderTextColor: string;
-  fontSize: string;
+  placeholderTextColor?: string;
+  fontSize?: string;
+  backgroundColor?: string;
 };
 
 const SolidInputElement: React.FC<SolidInputElementProps> = ({
@@ -19,12 +20,13 @@ const SolidInputElement: React.FC<SolidInputElementProps> = ({
   onChangeValue,
   placeholderTextColor,
   fontSize,
+  backgroundColor,
 }) => {
-  const placeholderColor = placeholderTextColor;
-
   const styles = StyleSheet.create({
     input: {
-      width: "100%",
+      // width: "100%",
+      focus: "black",
+      color: placeholderTextColor ? placeholderTextColor : "black",
       paddingVertical: 4,
       paddingHorizontal: 5,
       marginVertical: 4,
@@ -32,7 +34,7 @@ const SolidInputElement: React.FC<SolidInputElementProps> = ({
       shadowColor: "gray",
       shadowOpacity: 0.7,
       shadowOffset: { width: 3, height: 3 },
-      backgroundColor: "white",
+      backgroundColor: backgroundColor ? backgroundColor : "white",
       fontSize: determineFontSize(
         fontSize,
         SMALL_FONT_SIZE,
@@ -43,10 +45,10 @@ const SolidInputElement: React.FC<SolidInputElementProps> = ({
   });
 
   return (
-    <View style={{ width: "100%" }}>
+    <View>
       <TextInput
         placeholder={value}
-        placeholderTextColor={placeholderColor}
+        placeholderTextColor={placeholderTextColor}
         style={styles.input}
         onChangeText={(text) => onChangeValue(text)}
       />

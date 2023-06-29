@@ -8,11 +8,11 @@ import {
 import { determineFontSize } from "./functions";
 
 type OutlineInputElementProps = {
-  value: string;
-  onChangeValue: React.Dispatch<SetStateAction<string>>;
-  placeholderTextColor: string;
-  outlineColor: string;
-  fontSize: string;
+  value?: string;
+  onChangeValue?: React.Dispatch<SetStateAction<string>>;
+  placeholderTextColor?: string;
+  outlineColor?: string;
+  fontSize?: string;
 };
 
 const OutlineInputElement: React.FC<OutlineInputElementProps> = ({
@@ -22,12 +22,11 @@ const OutlineInputElement: React.FC<OutlineInputElementProps> = ({
   outlineColor,
   fontSize,
 }) => {
-  const placeholderColor = placeholderTextColor;
-
   const styles = StyleSheet.create({
     input: {
-      borderColor: outlineColor.length === 0 ? "black" : outlineColor,
-      borderWidth: 3,
+      borderColor: outlineColor ? outlineColor : "black",
+      color: placeholderTextColor ? placeholderTextColor : "black",
+      borderWidth: 2,
       borderRadius: 5,
       borderStyle: "solid",
       paddingVertical: 4,
@@ -46,7 +45,7 @@ const OutlineInputElement: React.FC<OutlineInputElementProps> = ({
     <View>
       <TextInput
         placeholder={value}
-        placeholderTextColor={placeholderColor}
+        placeholderTextColor={placeholderTextColor}
         style={styles.input}
         onChangeText={(text) => onChangeValue(text)}
       />
